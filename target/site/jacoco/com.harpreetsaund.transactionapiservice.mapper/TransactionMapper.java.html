@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TransactionMapper.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">transaction-api-service</a> &gt; <a href="index.source.html" class="el_package">com.harpreetsaund.transactionapiservice.mapper</a> &gt; <span class="el_source">TransactionMapper.java</span></div><h1>TransactionMapper.java</h1><pre class="source lang-java linenums">package com.harpreetsaund.transactionapiservice.mapper;
+
+import com.harpreetsaund.transactionapiclient.dto.TransactionRequest;
+import com.harpreetsaund.transactionapiclient.dto.TransactionResponse;
+import com.harpreetsaund.transactionapiservice.model.Transaction;
+import org.springframework.stereotype.Component;
+
+@Component
+<span class="fc" id="L9">public class TransactionMapper {</span>
+
+    public Transaction toTransaction(TransactionRequest.Version1 request) {
+<span class="fc" id="L12">        Transaction transaction = new Transaction();</span>
+<span class="fc" id="L13">        transaction.setEventId(request.getEventId());</span>
+<span class="fc" id="L14">        transaction.setTransactionId(request.getTransactionId());</span>
+<span class="fc" id="L15">        transaction.setAccountNumber(request.getAccountNumber());</span>
+<span class="fc" id="L16">        transaction.setTransactionType(request.getTransactionType());</span>
+<span class="fc" id="L17">        transaction.setAmount(request.getAmount());</span>
+<span class="fc" id="L18">        transaction.setCurrency(request.getCurrency());</span>
+<span class="fc" id="L19">        transaction.setMerchantName(request.getMerchantName());</span>
+<span class="fc" id="L20">        transaction.setChannel(request.getChannel());</span>
+<span class="fc" id="L21">        transaction.setTransactionTimestamp(request.getTransactionTimestamp());</span>
+<span class="fc" id="L22">        transaction.setSourceSystem(request.getSourceSystem());</span>
+<span class="fc" id="L23">        transaction.setTopicName(request.getTopicName());</span>
+
+<span class="fc" id="L25">        return transaction;</span>
+    }
+
+    public TransactionResponse.Version1 toTransactionResponseVersion1(Transaction transaction) {
+<span class="fc" id="L29">        TransactionResponse.Version1 response = new TransactionResponse.Version1();</span>
+<span class="fc" id="L30">        response.setId(transaction.getId());</span>
+<span class="fc" id="L31">        response.setEventId(transaction.getEventId());</span>
+<span class="fc" id="L32">        response.setTransactionId(transaction.getTransactionId());</span>
+<span class="fc" id="L33">        response.setAccountNumber(transaction.getAccountNumber());</span>
+<span class="fc" id="L34">        response.setTransactionType(transaction.getTransactionType());</span>
+<span class="fc" id="L35">        response.setAmount(transaction.getAmount());</span>
+<span class="fc" id="L36">        response.setCurrency(transaction.getCurrency());</span>
+<span class="fc" id="L37">        response.setMerchantName(transaction.getMerchantName());</span>
+<span class="fc" id="L38">        response.setChannel(transaction.getChannel());</span>
+<span class="fc" id="L39">        response.setTransactionTimestamp(transaction.getTransactionTimestamp());</span>
+<span class="fc" id="L40">        response.setSourceSystem(transaction.getSourceSystem());</span>
+<span class="fc" id="L41">        response.setTopicName(transaction.getTopicName());</span>
+<span class="fc" id="L42">        response.setCreatedAt(transaction.getCreatedAt());</span>
+
+<span class="fc" id="L44">        return response;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

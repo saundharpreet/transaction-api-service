@@ -1,0 +1,22 @@
+project:
+  name: "@project.name@"
+  version: "@project.version@"
+  description: "@project.description@"
+
+spring:
+  application:
+    name: ${project.name}
+  profiles:
+    active: local
+  jpa:
+    hibernate:
+      ddl-auto: none
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
