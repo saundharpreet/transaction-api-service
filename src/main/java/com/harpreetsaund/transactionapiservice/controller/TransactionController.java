@@ -63,7 +63,8 @@ public class TransactionController {
             @PathVariable @Parameter(description = "System-generated transaction ID", required = true) Long id) {
         logger.info("Received request to get transaction by id: {}", id);
         try {
-            return transactionApiService.getTransactionById(id).map(ResponseEntity::ok)
+            return transactionApiService.getTransactionById(id)
+                    .map(ResponseEntity::ok)
                     .orElse(ResponseEntity.notFound().build());
         } catch (Exception e) {
             logger.error("Error retrieving transaction by id: {}", id, e);
@@ -81,7 +82,8 @@ public class TransactionController {
             @PathVariable @Parameter(description = "Business transaction ID", required = true) String transactionId) {
         logger.info("Received request to get transaction by transactionId: {}", transactionId);
         try {
-            return transactionApiService.getTransactionByTransactionId(transactionId).map(ResponseEntity::ok)
+            return transactionApiService.getTransactionByTransactionId(transactionId)
+                    .map(ResponseEntity::ok)
                     .orElse(ResponseEntity.notFound().build());
         } catch (Exception e) {
             logger.error("Error retrieving transaction by transactionId: {}", transactionId, e);

@@ -60,22 +60,27 @@ public class TransactionApiService {
     @Transactional(readOnly = true)
     public List<TransactionResponse.Version1> getTransactionsByAccountNumber(String accountNumber) {
         logger.info("Fetching transactions for account: {}", accountNumber);
-        return transactionRepository.findByAccountNumber(accountNumber).stream()
-                .map(transactionMapper::toTransactionResponseVersion1).collect(Collectors.toList());
+        return transactionRepository.findByAccountNumber(accountNumber)
+                .stream()
+                .map(transactionMapper::toTransactionResponseVersion1)
+                .collect(Collectors.toList());
     }
 
     @Transactional(readOnly = true)
     public List<TransactionResponse.Version1> getAllTransactions() {
         logger.info("Fetching all transactions");
-        return transactionRepository.findAll().stream().map(transactionMapper::toTransactionResponseVersion1)
+        return transactionRepository.findAll()
+                .stream()
+                .map(transactionMapper::toTransactionResponseVersion1)
                 .collect(Collectors.toList());
     }
 
     public TransactionResponse.Version1 updateTransaction(String transactionId, TransactionRequest.Version1 request) {
         logger.info("Updating transaction with transactionId: {}", transactionId);
 
-        Transaction existingTransaction = transactionRepository.findByTransactionId(transactionId).orElseThrow(
-                () -> new IllegalArgumentException("Transaction not found with transactionId: " + transactionId));
+        Transaction existingTransaction = transactionRepository.findByTransactionId(transactionId)
+                .orElseThrow(() -> new IllegalArgumentException(
+                        "Transaction not found with transactionId: " + transactionId));
 
         // Update fields from request
         existingTransaction.setEventId(request.getEventId());
@@ -97,8 +102,9 @@ public class TransactionApiService {
     public void deleteTransaction(String transactionId) {
         logger.info("Deleting transaction with transactionId: {}", transactionId);
 
-        Transaction transaction = transactionRepository.findByTransactionId(transactionId).orElseThrow(
-                () -> new IllegalArgumentException("Transaction not found with transactionId: " + transactionId));
+        Transaction transaction = transactionRepository.findByTransactionId(transactionId)
+                .orElseThrow(() -> new IllegalArgumentException(
+                        "Transaction not found with transactionId: " + transactionId));
 
         transactionRepository.delete(transaction);
         logger.info("Transaction deleted with id: {}", transaction.getId());

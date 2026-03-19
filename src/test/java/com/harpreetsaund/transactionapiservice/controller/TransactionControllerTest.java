@@ -80,8 +80,10 @@ class TransactionControllerTest {
 
         // Act & Assert
         mockMvc.perform(post("/v1/transactions").contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(request))).andExpect(status().isCreated())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON)).andExpect(jsonPath("$.id").value(1L))
+                .content(objectMapper.writeValueAsString(request)))
+                .andExpect(status().isCreated())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$.id").value(1L))
                 .andExpect(jsonPath("$.eventId").value("evt-123"));
 
         verify(transactionApiService).createTransaction(any(TransactionRequest.Version1.class));
@@ -108,8 +110,10 @@ class TransactionControllerTest {
         when(transactionApiService.getTransactionById(1L)).thenReturn(Optional.of(response));
 
         // Act & Assert
-        mockMvc.perform(get("/v1/transactions/{id}", 1L)).andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON)).andExpect(jsonPath("$.id").value(1L));
+        mockMvc.perform(get("/v1/transactions/{id}", 1L))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$.id").value(1L));
 
         verify(transactionApiService).getTransactionById(1L);
     }
@@ -133,7 +137,8 @@ class TransactionControllerTest {
         when(transactionApiService.getTransactionByTransactionId("txn-001")).thenReturn(Optional.of(response));
 
         // Act & Assert
-        mockMvc.perform(get("/v1/transactions/transaction/{transactionId}", "txn-001")).andExpect(status().isOk())
+        mockMvc.perform(get("/v1/transactions/transaction/{transactionId}", "txn-001"))
+                .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.transactionId").value("txn-001"));
 
@@ -147,7 +152,8 @@ class TransactionControllerTest {
         when(transactionApiService.getTransactionsByAccountNumber("ACC-12345")).thenReturn(List.of(response));
 
         // Act & Assert
-        mockMvc.perform(get("/v1/transactions/account/{accountNumber}", "ACC-12345")).andExpect(status().isOk())
+        mockMvc.perform(get("/v1/transactions/account/{accountNumber}", "ACC-12345"))
+                .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$[0].accountNumber").value("ACC-12345"));
 
@@ -161,8 +167,10 @@ class TransactionControllerTest {
         when(transactionApiService.getAllTransactions()).thenReturn(List.of(response));
 
         // Act & Assert
-        mockMvc.perform(get("/v1/transactions")).andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON)).andExpect(jsonPath("$[0].id").value(1L));
+        mockMvc.perform(get("/v1/transactions"))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$[0].id").value(1L));
 
         verify(transactionApiService).getAllTransactions();
     }
@@ -175,9 +183,11 @@ class TransactionControllerTest {
                 .thenReturn(response);
 
         // Act & Assert
-        mockMvc.perform(put("/v1/transactions/transaction/{transactionId}", "txn-001")
-                .contentType(MediaType.APPLICATION_JSON).content(objectMapper.writeValueAsString(request)))
-                .andExpect(status().isOk()).andExpect(content().contentType(MediaType.APPLICATION_JSON))
+        mockMvc.perform(
+                put("/v1/transactions/transaction/{transactionId}", "txn-001").contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(request)))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.transactionId").value("txn-001"));
 
         verify(transactionApiService).updateTransaction(eq("txn-001"), any(TransactionRequest.Version1.class));
@@ -191,8 +201,9 @@ class TransactionControllerTest {
                 .thenThrow(new IllegalArgumentException("Invalid request"));
 
         // Act & Assert
-        mockMvc.perform(put("/v1/transactions/transaction/{transactionId}", "txn-001")
-                .contentType(MediaType.APPLICATION_JSON).content(objectMapper.writeValueAsString(request)))
+        mockMvc.perform(
+                put("/v1/transactions/transaction/{transactionId}", "txn-001").contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(request)))
                 .andExpect(status().isBadRequest());
 
         verify(transactionApiService).updateTransaction(eq("txn-001"), any(TransactionRequest.Version1.class));

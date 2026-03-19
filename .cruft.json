@@ -1,13 +1,13 @@
 {
   "template": "https://github.com/saundharpreet/cookiecutter-simple-skeleton-service.git",
-  "commit": "a1bd107c1d6e6c9bb367b23eb16b839984c6c207",
+  "commit": "71c97267a71c9fdb3bb2e54b9f553246fe88befc",
   "checkout": null,
   "context": {
     "cookiecutter": {
       "project_name": "transaction-api-service",
       "project_name_camel": "TransactionApiService",
       "_template": "https://github.com/saundharpreet/cookiecutter-simple-skeleton-service.git",
-      "_commit": "a1bd107c1d6e6c9bb367b23eb16b839984c6c207"
+      "_commit": "71c97267a71c9fdb3bb2e54b9f553246fe88befc"
     }
   },
   "directory": null

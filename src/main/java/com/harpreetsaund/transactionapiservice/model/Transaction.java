@@ -158,12 +158,20 @@ public class Transaction {
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this).append("id", id).append("eventId", eventId)
-                .append("transactionId", transactionId).append("accountNumber", accountNumber)
-                .append("transactionType", transactionType).append("amount", amount).append("currency", currency)
-                .append("merchantName", merchantName).append("channel", channel)
-                .append("transactionTimestamp", transactionTimestamp).append("sourceSystem", sourceSystem)
-                .append("topicName", topicName).append("createdAt", createdAt).toString();
+        return new ToStringBuilder(this).append("id", id)
+                .append("eventId", eventId)
+                .append("transactionId", transactionId)
+                .append("accountNumber", accountNumber)
+                .append("transactionType", transactionType)
+                .append("amount", amount)
+                .append("currency", currency)
+                .append("merchantName", merchantName)
+                .append("channel", channel)
+                .append("transactionTimestamp", transactionTimestamp)
+                .append("sourceSystem", sourceSystem)
+                .append("topicName", topicName)
+                .append("createdAt", createdAt)
+                .toString();
     }
 
     @Override
@@ -176,18 +184,37 @@ public class Transaction {
 
         Transaction that = (Transaction) o;
 
-        return new EqualsBuilder().append(id, that.id).append(eventId, that.eventId)
-                .append(transactionId, that.transactionId).append(accountNumber, that.accountNumber)
-                .append(transactionType, that.transactionType).append(amount, that.amount)
-                .append(currency, that.currency).append(merchantName, that.merchantName).append(channel, that.channel)
-                .append(transactionTimestamp, that.transactionTimestamp).append(sourceSystem, that.sourceSystem)
-                .append(topicName, that.topicName).append(createdAt, that.createdAt).isEquals();
+        return new EqualsBuilder().append(id, that.id)
+                .append(eventId, that.eventId)
+                .append(transactionId, that.transactionId)
+                .append(accountNumber, that.accountNumber)
+                .append(transactionType, that.transactionType)
+                .append(amount, that.amount)
+                .append(currency, that.currency)
+                .append(merchantName, that.merchantName)
+                .append(channel, that.channel)
+                .append(transactionTimestamp, that.transactionTimestamp)
+                .append(sourceSystem, that.sourceSystem)
+                .append(topicName, that.topicName)
+                .append(createdAt, that.createdAt)
+                .isEquals();
     }
 
     @Override
     public int hashCode() {
-        return new HashCodeBuilder(17, 37).append(id).append(eventId).append(transactionId).append(accountNumber)
-                .append(transactionType).append(amount).append(currency).append(merchantName).append(channel)
-                .append(transactionTimestamp).append(sourceSystem).append(topicName).append(createdAt).toHashCode();
+        return new HashCodeBuilder(17, 37).append(id)
+                .append(eventId)
+                .append(transactionId)
+                .append(accountNumber)
+                .append(transactionType)
+                .append(amount)
+                .append(currency)
+                .append(merchantName)
+                .append(channel)
+                .append(transactionTimestamp)
+                .append(sourceSystem)
+                .append(topicName)
+                .append(createdAt)
+                .toHashCode();
     }
 }
