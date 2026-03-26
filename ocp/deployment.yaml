@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: transaction-api-service
-          image: docker.io/saundharpreet/transaction-api-service:1.0
+          image: docker.io/saundharpreet/transaction-api-service:1.2
           ports:
             - containerPort: 8080
           envFrom:
