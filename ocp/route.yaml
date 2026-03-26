@@ -1,0 +1,10 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: transaction-api-service
+spec:
+  to:
+    kind: Service
+    name: transaction-api-service
+  port:
+    targetPort: 8080
