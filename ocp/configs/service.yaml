@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: transaction-api-service
+  annotations:
+    # This tells OCP to generate a cert and put it in a secret named 'transaction-api-certs'
+    service.beta.openshift.io/serving-cert-secret-name: "transaction-api-certs"
+spec:
+  ports:
+    - name: https
+      port: 443
+      targetPort: 8443
+  selector:
+    app: transaction-api-service
